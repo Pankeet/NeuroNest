@@ -3,7 +3,7 @@ export interface IconProps {
 }
 
 export const IconSize = {
-    "sm" : "size-4",
-    "md" : "size-5",
-    "lg" : "size-6",
+    "sm" : "size-4 rounded-md",
+    "md" : "size-5 rounded-lg",
+    "lg" : "size-6 rounded-lg",
 }
