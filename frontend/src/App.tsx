@@ -6,10 +6,9 @@ function App() {
 
   return (
     <>
-      <Button startingIcon={<PlusSvg size="sm" />} variant='primary' text='Content' size='sm'/>
+      <Button startingIcon={<PlusSvg size="md" />} variant='primary' text='Content' size='sm' />
       <Button startingIcon={<ShareSvg size="md" />} variant="secondary" text='share' size="md" />
     </>
-    
   )
 }
 

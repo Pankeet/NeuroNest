@@ -13,14 +13,14 @@ export interface ButtonProps {
 
   const variantStyles = {
       "primary" : "bg-purple-600 text-white",
-      "secondary" : "bg-purple-300 text-purple-600"
+      "secondary" : "bg-purple-200 text-purple-600"
   }
   const sizestyles = {
-    "sm" : "px-2 py-1 text-sm rounded-md",
-    "md" : "px-4 py-2 text-md rounded-lg",
-    "lg" : "px-6 py-4 text-lg rounded-xl",
+    "sm" : "px-2 py-1 text-md rounded-md",
+    "md" : "px-4 py-2 text-lg rounded-lg",
+    "lg" : "px-6 py-3 text-xl rounded-xl",
 }
-  const defaultStyles = 'flex';
+  const defaultStyles = 'flex justify-center items-center';
 
   export function Button(props : ButtonProps) {
   
