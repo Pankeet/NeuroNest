@@ -1,5 +1,6 @@
 import type { IconProps } from "./index"
 import { IconSize } from "./index"
+
 export function ShareSvg(props : IconProps){
     return (
         <>

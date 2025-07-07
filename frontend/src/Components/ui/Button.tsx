@@ -16,11 +16,11 @@ export interface ButtonProps {
       "secondary" : "bg-purple-200 text-purple-600"
   }
   const sizestyles = {
-    "sm" : "px-2 py-1 text-md rounded-md",
-    "md" : "px-4 py-2 text-lg rounded-lg",
-    "lg" : "px-6 py-3 text-xl rounded-xl",
+    "sm" : "px-2 py-1 text-md rounded-lg",
+    "md" : "px-4 py-2 text-lg rounded-xl",
+    "lg" : "px-6 py-3 text-xl rounded-2xl",
 }
-  const defaultStyles = 'flex justify-center items-center';
+  const defaultStyles = 'flex items-center';
 
   export function Button(props : ButtonProps) {
   
