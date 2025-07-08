@@ -13,12 +13,12 @@ export interface ButtonProps {
 
   const variantStyles = {
       "primary" : "bg-purple-600 text-white",
-      "secondary" : "bg-purple-200 text-purple-600"
+      "secondary" : "bg-purple-300 text-purple-600"
   }
   const sizestyles = {
-    "sm" : "px-2 py-1 text-md rounded-lg",
-    "md" : "px-4 py-2 text-lg rounded-xl",
-    "lg" : "px-6 py-3 text-xl rounded-2xl",
+    "sm" : "px-2 py-1 text-sm rounded-lg",
+    "md" : "px-3 py-2 text-md rounded-xl",
+    "lg" : "px-4 py-3 text-lg rounded-xl",
 }
   const defaultStyles = 'flex items-center';
 

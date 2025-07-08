@@ -6,9 +6,9 @@ import { Input } from "./Input";
 export function CreateContent({open , onClose}){
     return (
         <div>
-            {open && <div className="w-screen h-screen bg-black fixed top-0 left-0 bg-opacity-50 flex justify-center items-center" onClick={onClose}>
+            {open && <div className="w-screen h-screen bg-gray-600 fixed top-0 left-0 bg-opacity-50 flex justify-center items-center" onClick={onClose}>
                 <div className="flex justify-center items-center" onClick={(e) => e.stopPropagation()} >
-                    <span className="bg-white opacity-100 p-8 text-gray-600 rounded-lg shadow-black shadow-lg">
+                    <span className="bg-white opacity-100 p-8 text-gray-600 rounded-lg">
                         <div className="flex justify-end">
                             <span className="cursor-pointer" onClick={onClose}><CrossIcon size="lg" /></span>
                         </div>

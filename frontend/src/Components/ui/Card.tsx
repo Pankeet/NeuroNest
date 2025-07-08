@@ -5,7 +5,7 @@ interface cardProps {
     type : "twitter" | "youtube"
 }
 
-export function Card({title , link , type }){
+export function Card({title , link , type }: cardProps){
     return <div>
         <div className="max-w-80 bg-white rounded-md shadow-sm border shadow-gray-100 p-5">
             <div className="flex justify-between items-center">
