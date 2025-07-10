@@ -25,7 +25,7 @@ export interface ButtonProps {
   export function Button(props : ButtonProps) {
   
     return (
-     <button onClick={props.onClick} className={`${variantStyles[props.variant]} ${defaultStyles} ${sizestyles[props.size]}`}>{props.startingIcon ? <div className="pr-2"> {props.startingIcon} </div> : null}
+     <button type="button" onClick={props.onClick} className={`${variantStyles[props.variant]} ${defaultStyles} ${sizestyles[props.size]}`}>{props.startingIcon ? <div className="pr-2"> {props.startingIcon} </div> : null}
       {props.text} {props.endIcon ? <div className="pr-1" >{props.endIcon}</div> : null}</button>
     );
   }

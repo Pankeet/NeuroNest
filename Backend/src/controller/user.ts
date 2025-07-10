@@ -90,7 +90,7 @@ userRouter.post('/content' , userJwt , async (req:Request,res:Response) => {
 
     try{
         const User = await ContentModel.create({
-            title , link , description , userId : (req as any).userId
+            title , link , description , type : mainDomain ,  userId : (req as any).userId
         });
 
         res.status(200).json({
@@ -100,7 +100,7 @@ userRouter.post('/content' , userJwt , async (req:Request,res:Response) => {
         return ;
     }   
     catch(err){
-        console.log(err);
+        console.error("🔥 Error while creating content:", err);
         res.status(500).json({
             message : "Error !"
         });

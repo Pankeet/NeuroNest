@@ -43,6 +43,7 @@ const content = new mongoose_1.Schema({
     title: { type: String },
     link: { type: String, unique: true },
     description: { type: String },
+    type: { type: String },
     //tags : {type : mongoose.Types.ObjectId , ref:'tags'},
     userId: { type: mongoose_1.default.Types.ObjectId, ref: 'user', required: true }
 });

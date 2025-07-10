@@ -1,4 +1,4 @@
-import axios from 'axios';
+//import axios from 'axios';
 import { useState } from 'react';
 import { Button } from '../Components/ui/Button'
 import { PlusSvg } from '../Components/icons/plus';
@@ -6,14 +6,10 @@ import { ShareSvg } from "../Components/icons/share";
 import { Card } from '../Components/ui/Card';
 import { CreateContent } from '../Components/ui/Content';
 import { SideBar } from '../Components/ui/Sidebar';
+import { useContent } from '../hooks/useContent';
 function DashBoard() {
   const [modelOpen,setOpen] = useState(false);
-
-  async function shareBrain(){
-    
-    let response = await axios.
-    return ;
-  }
+  const contents = useContent();
 
   return (
     <div className='font-serif'>
@@ -25,8 +21,8 @@ function DashBoard() {
             <Button startingIcon={<ShareSvg size="sm" />} variant="secondary" text='Share Brain' size="md"/>
             <Button startingIcon={<PlusSvg size="sm" />} variant='primary' text='Add Content' size='md' onClick={()=>setOpen(true)}/>
           </div>
-          <div className='flex gap-6'>
-            <Card type="youtube" link="https://www.youtube.com/watch?v=qWfaptZzLxo" title="Trump" description='PUb' />
+          <div className='flex flex-row gap-6'>
+            {contents.map(({type , link , title , description}) => <Card type={type} description={description} title={title} link={link} />)}
           </div>
         </div>
       </div>

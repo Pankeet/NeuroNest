@@ -9,6 +9,7 @@ const content = new Schema({
     title : {type :String },
     link : { type : String , unique : true},
     description : { type : String},
+    type : {type : String} ,
     //tags : {type : mongoose.Types.ObjectId , ref:'tags'},
     userId : {type : mongoose.Types.ObjectId , ref:'user' , required : true}
 }) 

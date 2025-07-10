@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export function userJwt(req:Request, res:Response , next : NextFunction){
-    const token = req.headers.token as string;
+    const token = req.headers.authorization as string;
     if(!token){
         res.status(401).json({
         message : "Please login again"

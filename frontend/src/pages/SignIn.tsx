@@ -2,10 +2,12 @@ import { Button } from "../Components/ui/Button"
 import { useRef } from "react";
 import axios from "axios";
 import { Input } from "../Components/ui/Input";
+import { useNavigate } from "react-router-dom";
 export default function SignIn(){
 
     const emailRef = useRef<HTMLInputElement>(null);
     const passRef = useRef<HTMLInputElement>(null);
+    const navigate = useNavigate();
 
     async function login(){
         const email = emailRef.current?.value?? "";
@@ -23,12 +25,13 @@ export default function SignIn(){
             try{
                 const res = await axios.post("http://localhost:3001/api/v1/signin",data);
                 if(res.status == 200){
-                    localStorage.setItem("token", res?.data?.token);
+                    localStorage.setItem("token", res?.data.token);
                     alert("SignIn Successful !");
+                    navigate('/dashboard');
                 }
             }catch(err){
                 console.error(err);
-                 confirm(err?.res?.data.message);
+                 alert(err?.response?.data.message);
             }
         }
     }
@@ -50,7 +53,7 @@ export default function SignIn(){
                 </div>
             </form>
                 <div className="flex items-center justify-center">
-                <Button variant='primary' size="lg" text="Signup" onClick={login}/>
+                <Button variant='primary' size="lg" text="SignIn" onClick={login}/>
                 </div>
         </div>
 }

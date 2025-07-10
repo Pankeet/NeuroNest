@@ -8,7 +8,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 function userJwt(req, res, next) {
-    const token = req.headers.token;
+    const token = req.headers.authorization;
     if (!token) {
         res.status(401).json({
             message: "Please login again"

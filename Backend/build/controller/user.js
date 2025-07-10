@@ -56,7 +56,7 @@ const userRouter = (0, express_1.Router)();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 const salt = Math.floor((Math.random() * 5)) + 8;
-//Done
+//Done and Successfully Integrated
 userRouter.post('/signup', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // user.phone
     const user = req.body;
@@ -82,7 +82,7 @@ userRouter.post('/signup', (req, res) => __awaiter(void 0, void 0, void 0, funct
         console.log(err);
     }
 }));
-//Done
+//Done and Successfully Integrated
 userRouter.post('/signin', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const username = req.body.username;
     const password = req.body.password;
@@ -94,7 +94,7 @@ userRouter.post('/signin', (req, res) => __awaiter(void 0, void 0, void 0, funct
         if (checkPassword) {
             const token = jsonwebtoken_1.default.sign({
                 id: user._id,
-            }, process.env.JWT_SECRET, { expiresIn: '12h' });
+            }, process.env.JWT_SECRET, { expiresIn: '3h' });
             res.status(200).json({
                 token: token,
                 message: " Sign in Successful"
@@ -124,7 +124,7 @@ userRouter.post('/content', auth_1.userJwt, (req, res) => __awaiter(void 0, void
     const mainDomain = type1.length > 2 ? type1[1] : type1[0];
     try {
         const User = yield db_1.ContentModel.create({
-            title, link, description, userId: req.userId
+            title, link, description, type: mainDomain, userId: req.userId
         });
         res.status(200).json({
             message: "Content Added Successfully",
@@ -188,7 +188,7 @@ userRouter.post('/share', (req, res) => __awaiter(void 0, void 0, void 0, functi
         message: "Upadated Shared Link"
     });
 }));
-// Comming Soon
+// Testing
 userRouter.get('/api/v1/brain/:shareLink', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const hash = req.params.shareLink;
     const link = yield db_1.LinkModel.findOne({
@@ -234,10 +234,18 @@ userRouter.delete('/delete-account', auth_1.userJwt, (req, res) => __awaiter(voi
         const deleteAcc = yield db_1.UserModel.deleteOne({ _id: req.userId });
         try {
             const deleteContent = yield db_1.ContentModel.deleteMany({ userId: req.userId });
-            res.status(200).json({
-                message: "Account Deleted Successfully"
-            });
-            return;
+            if (deleteContent) {
+                res.status(200).json({
+                    message: "Account Deleted Successfully"
+                });
+                return;
+            }
+            else {
+                res.status(500).json({
+                    message: "Unable to delete Account "
+                });
+                return;
+            }
         }
         catch (error) {
             res.status(500).json({

@@ -5,15 +5,17 @@ import { BACKEND_URL } from "../config";
 import { Button } from "../Components/ui/Button"
 import { HidePass } from "../Components/icons/eye";
 import { Input } from "../Components/ui/Input";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp(){
     const emailRef = useRef<HTMLInputElement>(null);
     const passRef = useRef<HTMLInputElement>(null);
     const [hidepassword ,  setHidepassword] = useState(true); 
+    const navigate = useNavigate();
 
 
     async function signup(){
-        const email:string = emailRef.current?.value?? "";
+        const email = emailRef.current?.value?? "";
         const password = passRef.current?.value?? "";
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         const isValid = emailRegex.test(email);
@@ -30,6 +32,7 @@ export default function SignUp(){
                 const response = await axios.post(BACKEND_URL + "/api/v1/signup" ,data);
                 if(response.status == 200){
                     alert("User Created Successfully !");
+                    navigate('/login');
                 }   
             }catch(error) {
                 console.error("Error :- ", error);
@@ -57,7 +60,7 @@ export default function SignUp(){
                     
                     <span className="text-gray-700 text-md">Already a User ? <span className="cursor-pointer font-semibold">Login</span></span>
                 </div>
-                <div className="ml-80 -translate-y-[94px] cursor-pointer" onClick={() => setHidepassword(!hidepassword)}>
+                <div className="ml-[21rem] -translate-y-[102px] cursor-pointer" onClick={() => setHidepassword(!hidepassword)}>
                     <HidePass hidepassword={hidepassword}/>
                 </div>
             </form>

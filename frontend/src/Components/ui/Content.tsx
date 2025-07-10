@@ -2,9 +2,9 @@ import { useLayoutEffect, useRef } from "react";
 import { CrossIcon } from "../icons/cross";
 import { Button } from "./Button";
 import { Input } from "./Input";
-import { Card } from "./Card";
 import gsap from 'gsap';
 import axios from 'axios';
+import { BACKEND_URL } from "../../config";
 
 interface Content_Be {
     title : string;
@@ -15,9 +15,9 @@ interface Content_Be {
 // Controlled Component
 export function CreateContent({open , onClose}){
 
-    const title = useRef<HTMLTextAreaElement>(null);
-    const link = useRef<HTMLTextAreaElement>(null);
-    const description = useRef<HTMLTextAreaElement>(null);
+    const title = useRef<HTMLInputElement>(null);
+    const link = useRef<HTMLInputElement>(null);
+    const description = useRef<HTMLInputElement>(null);
 
     useLayoutEffect(()=>{
         if(open){
@@ -31,7 +31,7 @@ export function CreateContent({open , onClose}){
         }
     },[open]);
 
-    async function newContent():Promise<void>{
+    async function newContent(){ 
 
         const title1= title.current?.value ?? '';
         const link1 = link.current?.value ?? '';
@@ -50,13 +50,16 @@ export function CreateContent({open , onClose}){
                 description: desc
             };
 
-            const resp = await axios.post("http://localhost:3001/api/vi/content" , data);
+            const resp = await axios.post( BACKEND_URL+"/api/v1/content" , data , {
+                headers : {
+                    "Authorization" : localStorage.getItem("token")
+                }
+            });
             if(resp.status == 200){
-                <Card title={data.title} link={data.link} description={data.description} type={resp.data.type_1}/>
                 alert("Content Was Added Successfully !");
             }
             else{
-                alert("Unable to create Content");
+                alert("Unable to add Content");
             }
         }
     }
@@ -69,9 +72,9 @@ export function CreateContent({open , onClose}){
                             <span className="cursor-pointer" onClick={onClose}><CrossIcon size="lg" /></span>
                         </div>
                         <div className="flex flex-col justify-center items-center w-80">
-                            <Input placeholder="Title" type="text"/>
-                            <Input placeholder="link" type="text"/>
-                            <Input placeholder="description" type ="text-area"/>
+                            <Input placeholder="Title" type="text" reference={title}/>
+                            <Input placeholder="link" type="text" reference={link}/>
+                            <Input placeholder="description" type ="text-area" reference={description}/>
                         </div>
                         <div className="flex flex-row justify-center mt-7">
                             <Button variant="primary" text="Submit" size="md" onClick={newContent}/>
