@@ -25,9 +25,14 @@ export function Card({title , link , description , type }: cardProps){
             </div>
             <div className="pt-6">
 
-                {type === "youtube" ? <iframe className="w-full h-48" src={link.replace("watch","embed").replace("?v=","/")} title="YouTube video player" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> : 
+                {type === "youtube" ? <iframe className="w-full h-48"
+                                        src={link.replace("watch.?v=", "embed/")}
+                                        title="YouTube video player"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                        ></iframe>
+ : 
                     <blockquote className="twitter-tweet">
                         <a href={link.replace("x","twitter")}></a> 
                     </blockquote>
