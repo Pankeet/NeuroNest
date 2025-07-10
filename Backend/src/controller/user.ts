@@ -14,7 +14,7 @@ app.use(express.json());
 
 const salt : number = Math.floor((Math.random() * 5)) + 8;
 
-//Done
+//Done and Successfully Integrated
 userRouter.post('/signup' , async (req:Request , res:Response) => {
     // user.phone
     const user = req.body;
@@ -42,7 +42,7 @@ userRouter.post('/signup' , async (req:Request , res:Response) => {
     }
 });
 
-//Done
+//Done and Successfully Integrated
 userRouter.post('/signin' , async (req:Request, res:Response) => {
 
     const username = req.body.username;
@@ -57,7 +57,7 @@ userRouter.post('/signin' , async (req:Request, res:Response) => {
         if(checkPassword){
             const token = jwt.sign({
                 id: user._id,
-            } , process.env.JWT_SECRET as string, {expiresIn : '12h'});
+            } , process.env.JWT_SECRET as string, {expiresIn : '3h'});
 
             res.status(200).json({
                 token  : token,
@@ -87,6 +87,7 @@ userRouter.post('/content' , userJwt , async (req:Request,res:Response) => {
     const typeUrl = new URL(link);
     const type1 = typeUrl.hostname.split(".");
     const mainDomain = type1.length > 2 ? type1[1] : type1[0];
+
     try{
         const User = await ContentModel.create({
             title , link , description , userId : (req as any).userId
@@ -158,7 +159,7 @@ userRouter.post('/share' , async (req, res) => {
 
 });
 
-// Comming Soon
+// Testing
 userRouter.get('/api/v1/brain/:shareLink' , async (req :Request, res:Response) => {
     const hash = req.params.shareLink;
     
@@ -209,10 +210,17 @@ userRouter.delete('/delete-account' , userJwt , async (req:Request , res : Respo
         const deleteAcc = await UserModel.deleteOne({ _id : (req as any).userId});
         try{
             const deleteContent = await ContentModel.deleteMany({userId : (req as any).userId})
+            if(deleteContent){
             res.status(200).json({
                 message : "Account Deleted Successfully"
             })
             return;
+        }   else{
+            res.status(500).json({
+                message : "Unable to delete Account "
+            })
+            return ;
+        }
         }   catch(error){
             res.status(500).json({
                 message : "Could not delete the related Contents of the user !"

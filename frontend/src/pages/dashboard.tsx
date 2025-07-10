@@ -12,7 +12,7 @@ function DashBoard() {
   async function shareBrain(){
     
     let response = await axios.
-    return 
+    return ;
   }
 
   return (

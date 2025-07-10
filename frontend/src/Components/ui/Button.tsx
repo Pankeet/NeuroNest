@@ -8,7 +8,7 @@ export interface ButtonProps {
     text: string;
     startingIcon?: ReactElement; 
     endIcon?: ReactElement;  
-    onClick?: () => void | Promise<void>;    
+    onClick?: () => void | Promise<void>; 
   }
 
   const variantStyles = {

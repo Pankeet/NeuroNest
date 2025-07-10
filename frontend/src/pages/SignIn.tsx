@@ -1,7 +1,8 @@
 import { Button } from "../Components/ui/Button"
 import { useRef } from "react";
 import axios from "axios";
-export default function SignIn({setState}){
+import { Input } from "../Components/ui/Input";
+export default function SignIn(){
 
     const emailRef = useRef<HTMLInputElement>(null);
     const passRef = useRef<HTMLInputElement>(null);
@@ -22,7 +23,7 @@ export default function SignIn({setState}){
             try{
                 const res = await axios.post("http://localhost:3001/api/v1/signin",data);
                 if(res.status == 200){
-                    setState('dashboard');
+                    localStorage.setItem("token", res?.data?.token);
                     alert("SignIn Successful !");
                 }
             }catch(err){
@@ -31,28 +32,21 @@ export default function SignIn({setState}){
             }
         }
     }
-    return <div className="w-screen min-h-screen bg-gray-100 flex flex-col justify-center items-center">
+    return <div className="min-w-screen min-h-screen bg-gray-100 flex flex-col justify-center items-center font-serif">
         <div className="text-4xl">
             SignIn
         </div>
             <form>
-                <div className="border p-7 pb-4 m-4 border-gray-600 rounded-xl bg-white">
-                    <div className="mb-3 ">
+                <div className="w-full border p-6 pb-4 m-4 border-gray-600 rounded-xl bg-white grid place-content-center">
+                    <div className="w-80 mb-3">
                         <label htmlFor='email' className="text-lg">Email*</label>
-                        <input type="email" 
-                        id='email'
-                        ref={emailRef}
-                        className='w-full px-4 py-2 border mt-1 rounded-lg focus:ring-2 focus:ring-red-400 outline-none'  
-                        placeholder='username'></input>
+                        <Input type="email" placeholder="Username" reference={emailRef} />
                     </div>
-                    <div className="mb-3">
+                    <div className="w-80 mb-1">
                         <label htmlFor='password' className="text-lg">Password*</label>
-                        <input type="password" 
-                        id='password'
-                        ref={passRef}
-                        className='w-full px-4 py-2 border mt-1 rounded-lg focus:ring-2 focus:ring-red-400 outline-none'  
-                        placeholder='Enter you email'></input>
+                        <Input type="password" placeholder="Password" reference={passRef} />
                     </div>
+                    <span className=" text-md text-gray-700">Not a User ? <span className="cursor-pointer font-semibold" >SignUp</span></span>
                 </div>
             </form>
                 <div className="flex items-center justify-center">

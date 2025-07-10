@@ -2,43 +2,31 @@ import './App.css'
 import DashBoard  from './pages/dashboard';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
-import { useState } from 'react';
+import { BrowserRouter as Router , Routes , Route } from "react-router-dom";
 
 function App() {
+return (
+  <Router>
+    <Routes>
+    <Route path="/" element={<SignIn />} />
 
-  const [state , setState ] = useState('signup');
+    <Route path="/login" element={<SignIn  />} />
 
-  if(state === 'login'){
-    return (
-      <div className='font-serif grid place-content-center h-screen'>
-        <SignIn setState={setState}/>
-      </div>
-    )
-  }
+    <Route path="/signup" element={<SignUp  />} />
 
-  else if(state === 'signup'){
-    return (
-      <div className='font-serif grid place-content-center h-screen'>
-        <SignUp setstate={setState} />
-      </div>
-    )
-  }
-  else if(state === 'dashboard'){
-    return (
-      <div className='font-serif'>
-        <DashBoard />
-      </div>
-    )
-  }
+    <Route path="/dashboard" element={<DashBoard />} />
+    <Route path="*" element={<ErrorPage />} />
+    </Routes>
+  </Router>
+)
 
-  else{
+}
+function ErrorPage(){
     return (
       <div className='font-serif text-6xl grid place-content-center w-screen h-screen text-gray-800'>
           404 Error Not Found !
       </div>
     )
   }
-}  
-
-
+ 
 export default App;
