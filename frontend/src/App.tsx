@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 function App() {
 
-  const [state , setState ] = useState('Dashboard');
+  const [state , setState ] = useState('signup');
 
   if(state === 'login'){
     return (
@@ -19,11 +19,11 @@ function App() {
   else if(state === 'signup'){
     return (
       <div className='font-serif grid place-content-center h-screen'>
-        <SignUp />
+        <SignUp setstate={setState} />
       </div>
     )
   }
-  else if(state === 'Dashboard'){
+  else if(state === 'dashboard'){
     return (
       <div className='font-serif'>
         <DashBoard />

@@ -3,9 +3,6 @@ import mongoose, { model , mongo, Schema } from 'mongoose';
 const user = new Schema({
     username : {type: String , unique: true },
     password : {type: String },
-    name : {type: String },
-    age : Number,
-    phoneNumber : Number
 })
 
 const content = new Schema({

@@ -26,7 +26,7 @@ function DashBoard() {
             <Button startingIcon={<PlusSvg size="sm" />} variant='primary' text='Add Content' size='md' onClick={()=>setOpen(true)}/>
           </div>
           <div className='flex gap-6'>
-            <Card type="youtube" link="https://www.youtube.com/embed/utCPBmXNez8" title="Trump" description='PUb' />
+            <Card type="youtube" link="https://www.youtube.com/watch?v=qWfaptZzLxo" title="Trump" description='PUb' />
           </div>
         </div>
       </div>

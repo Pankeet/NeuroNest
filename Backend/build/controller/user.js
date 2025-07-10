@@ -72,9 +72,6 @@ userRouter.post('/signup', (req, res) => __awaiter(void 0, void 0, void 0, funct
         yield db_1.UserModel.create({
             username: user.username,
             password: hashPassword,
-            name: user.name,
-            age: user.age,
-            phoneNumber: user.phone
         });
         res.status(200).json({
             message: "SignUp Successful"

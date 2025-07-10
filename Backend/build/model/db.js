@@ -38,9 +38,6 @@ const mongoose_1 = __importStar(require("mongoose"));
 const user = new mongoose_1.Schema({
     username: { type: String, unique: true },
     password: { type: String },
-    name: { type: String },
-    age: Number,
-    phoneNumber: Number
 });
 const content = new mongoose_1.Schema({
     title: { type: String },

@@ -30,9 +30,6 @@ userRouter.post('/signup' , async (req:Request , res:Response) => {
         await UserModel.create({
             username : user.username,
             password : hashPassword,
-            name: user.name,
-            age: user.age,
-            phoneNumber: user.phone
         })
 
         res.status(200).json({
