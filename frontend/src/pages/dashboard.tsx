@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { Button } from '../Components/ui/Button'
 import { PlusSvg } from '../Components/icons/plus';
@@ -6,8 +7,14 @@ import { Card } from '../Components/ui/Card';
 import { CreateContent } from '../Components/ui/Content';
 import { SideBar } from '../Components/ui/Sidebar';
 function DashBoard() {
-
   const [modelOpen,setOpen] = useState(false);
+
+  async function shareBrain(){
+    
+    let response = await axios.
+    return 
+  }
+
   return (
     <div className='font-serif'>
       <div>
@@ -15,11 +22,11 @@ function DashBoard() {
         <div className='p-4 ml-64 min-h-screen bg-gray-100'>
           <CreateContent open={modelOpen} onClose={() => {setOpen(false)}} />
           <div className='flex justify-end gap-3'>
-            <Button startingIcon={<ShareSvg size="sm" />} variant="secondary" text='Share Brain' size="md" />
+            <Button startingIcon={<ShareSvg size="sm" />} variant="secondary" text='Share Brain' size="md"/>
             <Button startingIcon={<PlusSvg size="sm" />} variant='primary' text='Add Content' size='md' onClick={()=>setOpen(true)}/>
           </div>
           <div className='flex gap-6'>
-            <Card type="youtube" link="https://www.youtube.com/watch?v=utCPBmXNez8" title="Trump" />
+            <Card type="youtube" link="https://www.youtube.com/watch?v=utCPBmXNez8" title="Trump" description='PUb' />
           </div>
         </div>
       </div>

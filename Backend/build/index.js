@@ -17,7 +17,7 @@ const cors_1 = __importDefault(require("cors"));
 const db_1 = require("./config/db");
 const user_1 = __importDefault(require("./controller/user"));
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({ origin: "*" }));
 app.use(express_1.default.json());
 app.use('/api/v1', user_1.default);
 function startServer() {

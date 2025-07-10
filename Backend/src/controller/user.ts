@@ -87,13 +87,17 @@ userRouter.post('/content' , userJwt , async (req:Request,res:Response) => {
     const link = req.body.link;
     const description = req.body.description;
 
+    const typeUrl = new URL(link);
+    const type1 = typeUrl.hostname.split(".");
+    const mainDomain = type1.length > 2 ? type1[1] : type1[0];
     try{
         const User = await ContentModel.create({
             title , link , description , userId : (req as any).userId
         });
 
         res.status(200).json({
-            message : "Content Added Successfully"
+            message : "Content Added Successfully",
+            type_1 : mainDomain
         })
         return ;
     }   

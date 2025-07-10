@@ -122,12 +122,16 @@ userRouter.post('/content', auth_1.userJwt, (req, res) => __awaiter(void 0, void
     const title = req.body.title;
     const link = req.body.link;
     const description = req.body.description;
+    const typeUrl = new URL(link);
+    const type1 = typeUrl.hostname.split(".");
+    const mainDomain = type1.length > 2 ? type1[1] : type1[0];
     try {
         const User = yield db_1.ContentModel.create({
             title, link, description, userId: req.userId
         });
         res.status(200).json({
-            message: "Content Added Successfully"
+            message: "Content Added Successfully",
+            type_1: mainDomain
         });
         return;
     }
@@ -167,6 +171,7 @@ userRouter.get('/content', auth_1.userJwt, function (req, res) {
         }
     });
 });
+// Comming Soon
 userRouter.post('/share', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const userId = req.body.userId;
     const share = req.body.share;
@@ -186,6 +191,7 @@ userRouter.post('/share', (req, res) => __awaiter(void 0, void 0, void 0, functi
         message: "Upadated Shared Link"
     });
 }));
+// Comming Soon
 userRouter.get('/api/v1/brain/:shareLink', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const hash = req.params.shareLink;
     const link = yield db_1.LinkModel.findOne({
@@ -219,6 +225,7 @@ userRouter.get('/api/v1/brain/:shareLink', (req, res) => __awaiter(void 0, void 
         }
     }
 }));
+//Done
 userRouter.delete('/remove-content/:link', auth_1.userJwt, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const deleteContent = yield db_1.ContentModel.deleteOne({
         link: req.params.link

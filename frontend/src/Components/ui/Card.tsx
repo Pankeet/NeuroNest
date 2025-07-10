@@ -2,10 +2,11 @@ import { ShareSvg } from "../icons/share";
 interface cardProps {
     title : string;
     link : string;
+    description : string
     type : "twitter" | "youtube"
 }
 
-export function Card({title , link , type }: cardProps){
+export function Card({title , link , description , type }: cardProps){
     return <div>
         <div className="max-w-80 bg-white rounded-md shadow-sm border shadow-gray-100 p-5">
             <div className="flex justify-between items-center">
@@ -23,7 +24,7 @@ export function Card({title , link , type }: cardProps){
                </div>
             </div>
             <div className="pt-6">
-                {/*Ek vaaar  type=== '&&' try karje*/}
+
                 {type === "youtube" ? <iframe className="w-full h-48" src={link.replace("watch","embed").replace("?v=","/")} title="YouTube video player" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> : 
@@ -31,6 +32,9 @@ export function Card({title , link , type }: cardProps){
                         <a href={link.replace("x","twitter")}></a> 
                     </blockquote>
                 }
+            </div>
+            <div className="text-lg flex">
+                #{description}
             </div>
         </div>
     </div>
