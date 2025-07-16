@@ -9,7 +9,7 @@ function App() {
 return (
   <Router>
     <Routes>
-    <Route path="/" element={<HomePage><SignIn /></HomePage>} />
+    <Route path="/" element={<HomePage />} />
 
     <Route path="/login" element={<SignIn  />} />
 
@@ -30,8 +30,7 @@ function ErrorPage(){
     )
   }
  
-
-  function HomePage({ children }: { children: JSX.Element }) {
+  function HomePage() {
     const token = localStorage.getItem("token");
     const nav = useNavigate();
   
@@ -43,6 +42,6 @@ function ErrorPage(){
       }
     }, [token, nav]);
   
-    return null; // or return a loading spinner while redirecting
+    return null;
   }
 export default App;
