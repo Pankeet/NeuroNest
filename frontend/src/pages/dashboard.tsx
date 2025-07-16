@@ -1,4 +1,3 @@
-//import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Button } from '../Components/ui/Button'
 import { PlusSvg } from '../Components/icons/plus';

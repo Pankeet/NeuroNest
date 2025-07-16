@@ -35,6 +35,7 @@ export default function SignIn(){
                 }
             }catch(err){
                 console.error(err);
+                // @ts-ignore
                  alert(err?.response?.data.message || err?.message) ;
             }
         }

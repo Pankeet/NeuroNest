@@ -12,8 +12,12 @@ interface Content_Be {
     description : string;
 }
 
+type ContentBar = {
+    open : boolean;
+    onClose : () => void;
+}
 // Controlled Component
-export function CreateContent({open , onClose}){
+export function CreateContent({open , onClose} : ContentBar){
 
     const title = useRef<HTMLInputElement>(null);
     const link = useRef<HTMLInputElement>(null);

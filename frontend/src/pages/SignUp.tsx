@@ -39,6 +39,7 @@ export default function SignUp(){
                 }   
             }catch(error) {
                 console.error("Error :- ", error);
+                // @ts-ignore
                 confirm(error?.response?.data?.message);
             }
         }

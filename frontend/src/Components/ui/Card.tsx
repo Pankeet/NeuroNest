@@ -28,9 +28,9 @@ export function Card({title , link , description , type }: cardProps){
                 {type === "youtube" ? <iframe className="w-full h-48"
                                         src={link.replace("watch?v=", "embed/")}
                                         title="YouTube video player"
-                                        frameborder="0"
+                                        frameBorder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
+                                        allowFullScreen
                                         ></iframe>
                                 : 
                     <blockquote className="twitter-tweet">
