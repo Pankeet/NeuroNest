@@ -41,6 +41,7 @@ export function CreateContent({open , onClose}){
         const isValid = linkRegex.test(link1); 
         
         if (title1.trim() === '' || !isValid || desc.trim() === '') {
+            alert("Please fill the details to add the content !");
             return;
         }
         else{
@@ -49,16 +50,18 @@ export function CreateContent({open , onClose}){
                 link : link1,
                 description: desc
             };
-
-            const resp = await axios.post( BACKEND_URL+"/api/v1/content" , data , {
-                headers : {
-                    "Authorization" : localStorage.getItem("token")
+            try{
+                const resp = await axios.post( BACKEND_URL+"/api/v1/content" , data , {
+                    headers : {
+                        "Authorization" : localStorage.getItem("token")
+                    }
+                });
+                if(resp.status == 200){
+                    alert("Content Was Added Successfully !");
                 }
-            });
-            if(resp.status == 200){
-                alert("Content Was Added Successfully !");
             }
-            else{
+            catch(err){
+                console.error(err);
                 alert("Unable to add Content");
             }
         }

@@ -133,7 +133,7 @@ userRouter.post('/content', auth_1.userJwt, (req, res) => __awaiter(void 0, void
         return;
     }
     catch (err) {
-        console.log(err);
+        console.error("🔥 Error while creating content:", err);
         res.status(500).json({
             message: "Error !"
         });

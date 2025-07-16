@@ -13,6 +13,9 @@ export default function SignUp(){
     const [hidepassword ,  setHidepassword] = useState(true); 
     const navigate = useNavigate();
 
+    function tologin(){
+        navigate('/login')
+    }
 
     async function signup(){
         const email = emailRef.current?.value?? "";
@@ -48,17 +51,17 @@ export default function SignUp(){
                 <div className="peer border p-9 pb-4 m-4 border-gray-600 rounded-xl bg-white grid place-content-center">
                     <div className="w-80 mb-3 ">
                         <label htmlFor='email' className="text-lg">Email*</label>
-                        <Input type="email" placeholder="UserName" reference={emailRef} />
+                        <Input type="email" placeholder="Username" reference={emailRef} />
                     </div>
                   
                     <div className="w-80 mb-2">
                         <div>
                         <label htmlFor='password' className="text-lg">Password*</label>
-                        <Input type={`${hidepassword ? "password" : "text"}`} reference={passRef} placeholder="Enter you passwor" />
+                        <Input type={`${hidepassword ? "password" : "text"}`} reference={passRef} placeholder="Password" />
                         </div>
                     </div>
                     
-                    <span className="text-gray-700 text-md">Already a User ? <span className="cursor-pointer font-semibold">Login</span></span>
+                    <span className="text-gray-700 text-md">Already a User ? <span className="cursor-pointer font-semibold" onClick={tologin}>Login</span></span>
                 </div>
                 <div className="ml-[21rem] -translate-y-[102px] cursor-pointer" onClick={() => setHidepassword(!hidepassword)}>
                     <HidePass hidepassword={hidepassword}/>

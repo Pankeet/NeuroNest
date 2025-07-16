@@ -2,13 +2,14 @@ import './App.css'
 import DashBoard  from './pages/dashboard';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
-import { BrowserRouter as Router , Routes , Route } from "react-router-dom";
+import { BrowserRouter as Router , Routes , Route, useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
 
 function App() {
 return (
   <Router>
     <Routes>
-    <Route path="/" element={<SignIn />} />
+    <Route path="/" element={<HomePage><SignIn /></HomePage>} />
 
     <Route path="/login" element={<SignIn  />} />
 
@@ -29,4 +30,19 @@ function ErrorPage(){
     )
   }
  
+
+  function HomePage({ children }: { children: JSX.Element }) {
+    const token = localStorage.getItem("token");
+    const nav = useNavigate();
+  
+    useEffect(() => {
+      if (!token) {
+        nav("/login");
+      } else {
+        nav("/dashboard");
+      }
+    }, [token, nav]);
+  
+    return null; // or return a loading spinner while redirecting
+  }
 export default App;

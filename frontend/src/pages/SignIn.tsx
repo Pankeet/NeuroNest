@@ -9,6 +9,10 @@ export default function SignIn(){
     const passRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
 
+    function toSignup(){
+        navigate('/signup')
+    }
+
     async function login(){
         const email = emailRef.current?.value?? "";
         const password = passRef.current?.value?? "";
@@ -31,7 +35,7 @@ export default function SignIn(){
                 }
             }catch(err){
                 console.error(err);
-                 alert(err?.response?.data.message);
+                 alert(err?.response?.data.message || err?.message) ;
             }
         }
     }
@@ -49,7 +53,7 @@ export default function SignIn(){
                         <label htmlFor='password' className="text-lg">Password*</label>
                         <Input type="password" placeholder="Password" reference={passRef} />
                     </div>
-                    <span className=" text-md text-gray-700">Not a User ? <span className="cursor-pointer font-semibold" >SignUp</span></span>
+                    <span className=" text-md text-gray-700">Not a User ? <span className="cursor-pointer font-semibold" onClick={toSignup}>SignUp</span></span>
                 </div>
             </form>
                 <div className="flex items-center justify-center">
