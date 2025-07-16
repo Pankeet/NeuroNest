@@ -3,6 +3,7 @@ import { useRef } from "react";
 import axios from "axios";
 import { Input } from "../Components/ui/Input";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../config";
 export default function SignIn(){
 
     const emailRef = useRef<HTMLInputElement>(null);
@@ -27,7 +28,7 @@ export default function SignIn(){
                 password : password,
             }
             try{
-                const res = await axios.post("http://localhost:3001/api/v1/signin",data);
+                const res = await axios.post(BACKEND_URL + "/api/v1/signin", data);
                 if(res.status == 200){
                     localStorage.setItem("token", res?.data.token);
                     alert("SignIn Successful !");
