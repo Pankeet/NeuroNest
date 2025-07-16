@@ -24,7 +24,8 @@ function startServer() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield (0, db_1.connectDb)();
-            app.listen(process.env.PORT, () => {
+            const PORT = process.env.PORT || 3001;
+            app.listen(PORT, () => {
                 console.log('Server is running on port 3001');
             });
         }
