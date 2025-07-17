@@ -12,12 +12,14 @@ function DashBoard() {
   const contents = useContent();
   const nav = useNavigate();
 
+  // Added Token and Nav in dependency array 
+  const token = localStorage.getItem("token");
+  // Safety Check ( if someone deletes token in dashboard )
   useEffect(() => {
-    const token = localStorage.getItem("token");
     if(!token){
-      nav('/login')
+      nav('/login');
     }
-  });
+  }, [nav , token]);
   return (
     <div className='font-serif'>
       <div>
