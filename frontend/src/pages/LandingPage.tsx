@@ -3,22 +3,25 @@ import { useLayoutEffect  } from "react";
 import { Button } from "../Components/ui/Button";
 import { useNavigate } from "react-router-dom";
 import img from "/Logo.png";
-import homepageImg2 from "/OnlyRobot.png";
+import Roboto from "/GptBot.png";
 
 export default function LandingPage(){
 
     const nav = useNavigate();
 
     useLayoutEffect(() => {
-        const tl = gsap.timeline();
-        tl.from("#top-div div", {
-            opacity : 0,
-            delay : 0.2,
-            duration : 0.8,
-            y : -20,
-            stagger : 0.1
-        })
-    },[])
+        const ctx = gsap.context(() => {
+            gsap.from("#top-div div", {
+                opacity : 0,
+                delay : 0.2,
+                duration : 0.8,
+                y : -20,
+                stagger : 0.1
+            })
+        });
+        return () => ctx.revert();
+    },[]);
+
     return (
         <div id="top-div" className="h-screen w-full overflow-hidden bg-[url('/HomePageBg.png')] bg-no-repeat bg-cover">
             <div className="m-8 px-10 py-3 bg-gray-700 rounded-lg grid grid-cols-11 place-content-center">
@@ -53,7 +56,7 @@ export default function LandingPage(){
                     </span>
                 </div>
                 <div className="col-span-1 flex justify-around">
-                    <img src={homepageImg2} className="size-96 mt-24 rounded-xl shadow-purple-700 bg-transparent" />
+                    <img src={Roboto} className="size-96 mt-24 rounded-xl shadow-purple-700 bg-transparent" />
                 </div>
                 <div className="flex justify-start ml-44 -mt-16">
                     <Button variant="primary" text="Get Started" size="lg" />
