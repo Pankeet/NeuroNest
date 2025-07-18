@@ -9,7 +9,7 @@ import { BACKEND_URL } from "../../config";
 interface Content_Be {
     title : string;
     link : string;
-    description : string;
+    description? : string;
 }
 
 type ContentBar = {
@@ -44,7 +44,7 @@ export function CreateContent({open , onClose} : ContentBar){
         const linkRegex = /\b(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}(?::\d{2,5})?(?:\/[^\s]*)?\b/;
         const isValid = linkRegex.test(link1); 
         
-        if (title1.trim() === '' || !isValid || desc.trim() === '') {
+        if (title1.trim() === '' || !isValid ) {
             alert("Please fill the details to add the content !");
             return;
         }

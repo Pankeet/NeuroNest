@@ -1,11 +1,10 @@
 import './App.css'
 import DashBoard  from './pages/dashboard';
+import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-// import SignIn from './pages/SignIn';
 import LandingPage from './pages/LandingPage';
 import { BrowserRouter as Router , Routes , Route, useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
-import SignIn from './pages/SignIn';
 
 function App() {
 return (

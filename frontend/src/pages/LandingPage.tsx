@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { useLayoutEffect  } from "react";
 import { Button } from "../Components/ui/Button";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import img from "/Logo.png";
 import Roboto from "/GptBot.png";
 
@@ -23,7 +23,9 @@ export default function LandingPage(){
     },[]);
 
     return (
-        <div id="top-div" className="h-screen w-full overflow-hidden bg-[url('/HomePageBg.png')] bg-no-repeat bg-cover">
+        <div 
+        id="top-div" 
+        className="h-screen w-full overflow-hidden bg-[url('/HomePageBg.png')] bg-no-repeat bg-cover">
             <div className="m-8 px-10 py-3 bg-gray-700 rounded-lg grid grid-cols-11 place-content-center">
                 <div className="flex justify-start text-2xl text-white col-span-2 mt-1">
                     <img src={img} className="w-10 h-10 mr-2 col-span-1" />
